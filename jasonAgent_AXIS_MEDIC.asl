@@ -160,7 +160,8 @@ patrollingRadius(64).
  */
 +!perform_no_ammo_action 
 /// <- ?debug(Mode); if (Mode<=1) { .println("YOUR CODE FOR PERFORM_NO_AMMO_ACTION GOES HERE.") }.
-	.MyTeam("fieldops_AXIS",Fops);
+<-
+	.my_team("fieldops_AXIS",Fops);
 	!nearest(Fops);
 	?nearest(Agent,Position,_);
 	!add_task(task(9999,"TASK_GOTO_POSITION",MyName,Position,""));
@@ -178,11 +179,12 @@ patrollingRadius(64).
  */
 +!perform_injury_action 
 ///<- ?debug(Mode); if (Mode<=1) { .println("YOUR CODE FOR PERFORM_INJURY_ACTION GOES HERE.") }.
+<-
 	?my_health(Hr);
 	if(Hr <= 40) {	
-			.my_team("AXIS", Agents)
-			!nearest(Agents)
-			?nearest(Agent, Position,_)
+			.my_team("AXIS", Agents);
+			!nearest(Agents);
+			?nearest(Agent, Position,_);
 			!performThresholdAction;
 			!add_task(task(9999,"TASK_GOTO_POSITION",MyName,Position,""));
 	}
@@ -241,8 +243,10 @@ patrollingRadius(64).
 	?my_health_threshold(Ht);
 	?my_ammo_threshold(At);
 	if (Hr < Ht | Ar < At){
+		println("sorry bru i can't go");
 		-+medicAction(of);
 	}else{
+		println("in my way to help with ammo");
 		-+medicAction(on)
 	}
 .
@@ -332,6 +336,14 @@ patrollingRadius(64).
    <- ?debug(Mode); if (Mode<=1) { .println("YOUR CODE FOR cfa_refuse GOES HERE.")};
       -cfa_refuse.  
 
+
+
+/////////////////////////////////
+//  Initialize variables
+/////////////////////////////////
+
++!init
+   <- ?debug(Mode); if (Mode<=1) { .println("YOUR CODE FOR init GOES HERE.")}.  
 
 
 /////////////////////////////////
